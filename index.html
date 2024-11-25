@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>E2Eテストツール Playwright</title>
+
+  <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+  <meta name="author" content="Hakim El Hattab">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/reset.css">
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/reveal.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <!-- highlight Theme -->
+  
+  <link rel="stylesheet" href="libs/highlight.js/11.3.1/styles/monokai.min.css">
+  
+	
+		
+	<link rel="stylesheet" href="libs/reveal.js/4.3.1/plugin/chalkboard/style.css">
+	
+	
+	
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/plugin/customcontrols/style.css">
+  
+	
+
+
+
+  <!-- Revealjs Theme -->
+  
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/theme/black.css" id="theme">
+  
+  
+
+  <link rel="stylesheet" href="libs/styles/tasklist.css">
+	<link rel="stylesheet" href="libs/styles/iota.css">
+	<link rel="stylesheet" href="libs/styles/layout.css">
+
+
+  <!-- Revealjs Theme -->
+  
+
+   <!-- css list -->
+	
+
+   
+
+</head>
+
+<body>
+
+   
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+      
+
+
+    
+        <section >
+            
+            <style type="text/css">
+  .reveal h1,
+  .reveal h2,
+  .reveal h3,
+  .reveal h4,
+  .reveal h5,
+  .reveal h6 {
+    text-transform: none;
+    font-family: "メイリオ" 
+  }
+  body {
+  }
+</style>
+<h2>E2E テストツール</h2>
+<h2>Playwright</h2>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>アウトライン</h3>
+<ul>
+<li>自己紹介</li>
+<li>Playwright とは？</li>
+<li>E2E テストをやってみる</li>
+<li>カスタマイズ項目の紹介</li>
+<li>まとめと展望</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+    <section>
+        <section data-background="./src/3.png" data-background-opacity=0.3>
+            <!-- .slide: data-background="./src/3.png" data-background-opacity=0.3 -->
+<h3>自己紹介</h3>
+<p class="fragment fade-left">たま（高玉 広輝）</p>
+<p class="fragment fade-left" style="color:orange">火 / 水 出社 &amp; 月 / 金 勉強会</p>
+<p class="fragment fade-left">他：イベントアルバイト</p>
+<p class="fragment fade-left" style="color:orange">趣味：ゲーム（モンハン）・技術記事</p>
+
+            </section>
+        
+            <section data-background="./src/3.png" data-background-opacity=0.3>
+                <!-- .slide: data-background="./src/3.png" data-background-opacity=0.3 -->
+<img src="./src/6.png" width="300px">
+<img src="./src/9.jpg" width="300px">
+<img src="./src/12.jpg" width="300px">
+<p style="width:200px"><img src="./src/12.jpg" alt=""></p>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h2>まずはイメージ</h2>
+
+            </section>
+        
+            <section >
+                <p><img src="./src/test1.gif" alt=""></p>
+
+            </section>
+        
+            <section data-background="./src/test1.gif" data-background-opacity=0.3>
+                <!-- .slide: data-background="./src/test1.gif" data-background-opacity=0.3 -->
+<h3>こんなことをやっていました</h3>
+<ul>
+<li>
+<p>ページにアクセス</p>
+</li>
+<li>
+<p>要素の操作</p>
+<ul>
+<li>
+<p>タブの切り替え</p>
+</li>
+<li>
+<p>数値の入力</p>
+</li>
+</ul>
+</li>
+<li>
+<p>適切に反映されているかチェック</p>
+</li>
+</ul>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section data-background="./src/test1.gif" data-background-opacity=0.3>
+            <!-- .slide: data-background="./src/test1.gif" data-background-opacity=0.3 -->
+<h2>Playwright とは？</h2>
+
+            </section>
+        
+            <section data-background="./src/test1.gif" data-background-opacity=0.3>
+                <!-- .slide: data-background="./src/test1.gif" data-background-opacity=0.3 -->
+<h3>概要</h3>
+<ul>
+<li class="fragment fade-left">
+<p>Microsoft が開発</p>
+</li>
+<li class="fragment fade-left">
+<p>E2E テストツール</p>
+</li>
+<li class="fragment fade-left">
+<p>OSS</p>
+</li>
+</ul>
+
+            </section>
+        
+            <section data-background="./src/test1.gif" data-background-opacity=0.3 data-auto-animate>
+                <!-- .slide: data-background="./src/test1.gif" data-background-opacity=0.3 data-auto-animate -->
+<h3>機能紹介（抜粋）</h3>
+<ul>
+<li class="fragment fade-left" data-auto-animate="">
+<p>ビデオ・スクショ・トレースの保存</p>
+</li>
+<li class="fragment fade-left">
+<p>Chromium / Firefox / Webkit をサポート</p>
+</li>
+<li class="fragment fade-left">
+<p>手動操作からテストコードを生成</p>
+</li>
+<li class="fragment fade-left">
+<p>モバイルデバイスのシミュレーション</p>
+</li>
+</ul>
+
+            </section>
+        
+            <section data-background="./src/test1.gif" data-background-opacity=0.3 data-auto-animate>
+                <!-- .slide: data-background="./src/test1.gif" data-background-opacity=0.3 data-auto-animate -->
+<h3>機能紹介（抜粋）</h3>
+<ul>
+<li style="color:orange">
+<p>ビデオ・スクショ・トレースの保存</p>
+</li>
+<li style="color:grey">
+<p>Chromium / Firefox / Webkit をサポート</p>
+</li>
+<li style="color:grey">
+<p>手動操作からテストコードを生成</p>
+</li>
+<li style="color:grey">
+<p>モバイルデバイスのシミュレーション</p>
+</li>
+</ul>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h2>E2E テストをやってみる</h2>
+
+            </section>
+        
+            <section >
+                <h3>テストフロー</h3>
+<ol>
+<li class="fragment fade-left">
+<p>ブラウザを開く</p>
+</li>
+<li class="fragment fade-left">
+<p>ページに移動する</p>
+</li>
+<li class="fragment fade-left">
+<p>要素を操作する</p>
+</li>
+<li class="fragment fade-left">
+<p>ブラウザを閉じる</p>
+</li>
+</ol>
+
+            </section>
+        
+            <section data-background="./src/welcome.png" data-background-opacity=0.3>
+                <!-- .slide: data-background="./src/welcome.png" data-background-opacity=0.3 -->
+<h2>テスト環境</h2>
+<p>麻雀用計算ツール<span style="color:orange">「着順ナビ」 </span></p>
+<pre><code class="language-zsh">% node -v
+v20.13.1
+
+% npm -v
+10.5.2
+
+% npx -v
+10.5.2
+
+% npx playwright -V
+Version 1.48.2
+</code></pre>
+
+            </section>
+        
+            <section data-background="./src/test1.gif" data-background-opacity=0.3>
+                <!-- .slide: data-background="./src/test1.gif" data-background-opacity=0.3 -->
+<h3>さっきのテスト</h3>
+<p>= 「点数入力が反映されるか」</p>
+<ul>
+<li>
+<p>数値の入力</p>
+</li>
+<li>
+<p>適切に反映されているかチェック</p>
+</li>
+</ul>
+
+            </section>
+        
+            <section data-background="./src/test1.gif" data-background-opacity=0.3 data-auto-animate>
+                <!-- .slide: data-background="./src/test1.gif" data-background-opacity=0.3 data-auto-animate -->
+<p>テストコード（録画用）</p>
+<p><img src="./src/test1_prev_code.png" alt=""></p>
+
+            </section>
+        
+            <section data-background="./src/test1.gif" data-background-opacity=0.3 data-auto-animate>
+                <!-- .slide: data-background="./src/test1.gif" data-background-opacity=0.3 data-auto-animate -->
+<p>本来の姿</p>
+<p><img src="./src/test1_next_code.png" alt=""></p>
+
+            </section>
+        
+            <section data-background="./src/welcome.png" data-background-opacity=0.3>
+                <!-- .slide: data-background="./src/welcome.png" data-background-opacity=0.3 -->
+<h3>もうひとつのテスト</h3>
+<p>「トグルボタンが反映されるか」</p>
+<ul>
+<li>
+<p>ボタンをクリック</p>
+</li>
+<li>
+<p>適切に反映されているかチェック</p>
+</li>
+</ul>
+
+            </section>
+        
+            <section data-background="./src/welcome.png" data-background-opacity=0.3>
+                <!-- .slide: data-background="./src/welcome.png" data-background-opacity=0.3 -->
+<h3>実際の操作</h3>
+<p><img src="./src/test2.gif" alt=""></p>
+
+            </section>
+        
+            <section data-background="./src/test2.gif" data-background-opacity=0.3 data-auto-animate>
+                <!-- .slide: data-background="./src/test2.gif" data-background-opacity=0.3 data-auto-animate -->
+<h3>操作手順</h3>
+<p>① テストを書く</p>
+<pre><code class="language-js">// ページに移動
+page.goto(__URL__);
+
+// 要素を取得し、操作
+await page.getByRole('spinbutton').nth(0).fill('25000');
+
+// 期待される結果
+await expect(page.locator('div.stat-value').nth(0)).toHaveText('25000');
+</code></pre>
+
+            </section>
+        
+            <section data-background="./src/test2.gif" data-background-opacity=0.3 data-auto-animate>
+                <!-- .slide: data-background="./src/test2.gif" data-background-opacity=0.3 data-auto-animate -->
+<h3>操作手順</h3>
+<p>② テストの実行</p>
+<pre><code class="language-js">// playwright.config.js
+
+module.exports = defineConfig({
+  testDir: './tests',
+});
+</code></pre>
+
+            </section>
+        
+            <section data-background="./src/test2.gif" data-background-opacity=0.3 data-auto-animate>
+                <!-- .slide: data-background="./src/test2.gif" data-background-opacity=0.3 data-auto-animate -->
+<h3>操作手順</h3>
+<p>② テストの実行</p>
+<pre><code class="language-zsh"># terminal
+
+npx playwright test
+</code></pre>
+
+            </section>
+        
+            <section data-background="./src/test2.gif" data-background-opacity=0.3 data-auto-animate>
+                <!-- .slide: data-background="./src/test2.gif" data-background-opacity=0.3 data-auto-animate -->
+<h3>操作手順</h3>
+<p>③ レポートの確認</p>
+<pre><code class="language-zsh"># terminal
+
+npx playwright show-report
+</code></pre>
+
+            </section>
+        
+            <section data-background="./src/test2.gif" data-background-opacity=0.3 data-auto-animate>
+                <!-- .slide: data-background="./src/test2.gif" data-background-opacity=0.3 data-auto-animate -->
+<h3>操作手順</h3>
+<p>③ レポートの確認</p>
+<pre><code class="language-zsh"># terminal
+
+npx playwright show-report
+</code></pre>
+<p><img src="./src/report1.png" alt=""></p>
+
+            </section>
+        
+            <section data-background="./src/test2.gif" data-background-opacity=0.3 data-auto-animate>
+                <!-- .slide: data-background="./src/test2.gif" data-background-opacity=0.3 data-auto-animate -->
+<h3>操作手順</h3>
+<p>③ レポートの確認</p>
+<p><img src="./src/report2.png" alt=""></p>
+
+            </section>
+        
+            <section data-background="./src/test2.gif" data-background-opacity=0.3 data-auto-animate>
+                <!-- .slide: data-background="./src/test2.gif" data-background-opacity=0.3 data-auto-animate -->
+<h3>操作手順</h3>
+<p>③ レポートの確認</p>
+<p><img src="./src/report3.png" alt=""></p>
+
+            </section>
+        
+            <section data-background="./src/test2.gif" data-background-opacity=0.3 data-auto-animate>
+                <!-- .slide: data-background="./src/test2.gif" data-background-opacity=0.3 data-auto-animate -->
+<h3>操作手順</h3>
+<p>③ レポートの確認</p>
+<p><img src="./src/report4.png" alt=""></p>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h2>カスタマイズ項目の紹介</h2>
+
+            </section>
+        
+            <section >
+                <h3>カスタムした項目</h3>
+<ul>
+<li>
+<p>ビデオ・スクショ・トレース</p>
+<ul>
+<li>on / off / 失敗のみ / リトライのみ</li>
+</ul>
+</li>
+<li>
+<p>テストタイムアウトの長さ</p>
+</li>
+<li>
+<p>テストするブラウザ</p>
+</li>
+</ul>
+
+            </section>
+        
+            <section >
+                <h3>便利そうなもの</h3>
+<ul>
+<li>
+<p>デバイス設定</p>
+<ul>
+<li>Desktop Chrome / Pixel 5 / iPhone 12 など</li>
+<li>&quot;Project&quot;という単位で、複数設定も可能</li>
+</ul>
+</li>
+<li>
+<p>ベース URL の設定</p>
+<ul>
+<li>/user/profile など path のみの記述ができる</li>
+</ul>
+</li>
+</ul>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h2>まとめと展望</h2>
+
+            </section>
+        
+            <section >
+                <h3>まとめ</h3>
+<ul>
+<li>
+<p>Playwright という E2E ツールがある</p>
+</li>
+<li>
+<p>ユーザー視点の自動テストができて便利</p>
+</li>
+<li>
+<p>（視覚的な）記録を残せる</p>
+</li>
+</ul>
+
+            </section>
+        
+            <section >
+                <h3>展望</h3>
+<ul>
+<li>
+<p>エラー対応力</p>
+<ul>
+<li>エラーメッセージ少(ターミナル)</li>
+</ul>
+</li>
+<li>
+<p>テストの前後処理</p>
+</li>
+<li>
+<p>CI（Github Actions など）</p>
+</li>
+<li>
+<p>UI モード</p>
+<ul>
+<li>codegen（自動生成）</li>
+</ul>
+</li>
+<li>
+<p>テスト設計思想</p>
+</li>
+</ul>
+
+            </section>
+        
+            <section >
+                <p>ご清聴ありがとうございました！</p>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section data-auto-animate>
+            <!-- .slide: data-auto-animate -->
+<h3>時間が余ったら・・・</h3>
+<img src="./src/book.png">
+<img src="./src/book2.png">
+            </section>
+        
+            <section data-auto-animate>
+                <!-- .slide: data-auto-animate -->
+<h3>時間が余ったら・・・</h3>
+<p><img src="./src/revealjs.png" alt=""></p>
+
+            </section>
+        
+
+    </section>
+    
+
+
+    </div>
+
+
+  </div>
+
+  <div class="line top"></div>
+  <div class="line bottom"></div>
+  <div class="line left"></div>
+  <div class="line right"></div>
+
+  <script src="libs/reveal.js/4.3.1/reveal.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/notes/notes.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/markdown/markdown.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/highlight/highlight.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/fullscreen/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/animate/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/animate/svg.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/Chart.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/d3.v3.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3.patch.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/queue.v1.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/topojson.v1.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/function-plot.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/customcontrols/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/embed-tweet/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chart/chart.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chart/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/verticator/verticator.js"></script>
+
+<script src="libs/reveal.js/4.3.1/plugin/zoom/zoom.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/search/search.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/menu/menu.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chalkboard/plugin.js"></script>
+
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/plugin.js"></script>  -->
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/recorder.js"></script>-->
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/RecordRTC.js"></script>-->
+
+  
+
+<script>
+  const printPlugins = [
+      RevealNotes,
+      RevealHighlight,
+      RevealMath.MathJax3,
+      RevealAnimate,
+      RevealChalkboard, 
+			RevealEmbedTweet,
+			RevealChart,
+		];
+
+		const plugins =  [...printPlugins,
+		RevealZoom, 
+		RevealSearch, 
+				RevealMarkdown, 
+				RevealMenu, 
+				RevealFullscreen,
+				RevealAnything,
+				//RevealAudioSlideshow,
+				//RevealAudioRecorder,
+				RevealCustomControls, 
+				// poll
+				// question
+				// seminar
+				Verticator 
+				 ]
+
+
+		// Also available as an ES module, see:
+		// https://revealjs.com/initialization/
+		Reveal.initialize({
+			controls: true,
+      controlsTutorial: true,
+      controlsLayout: 'bottom-right',
+      controlsBackArrows: 'faded',
+      progress: true,
+      slideNumber: true,
+      //#showSlideNumber "all" "print" "speaker"
+      hash: true, //# hash: false,
+      //# respondToHashChanges: true,
+      //# history: false,
+      keyboard: true,
+      //#keyboardCondition: null,
+      overview: true,
+      center: true,
+      touch: true,
+      loop: false,
+      rtl: false,
+      //#navigationMode: 'default', linear grid
+      shuffle: false,
+      fragments: true,
+      fragmentInURL: false,
+      embedded: false,
+      help: true,
+      //#pause: true
+      showNotes: false,
+      autoPlayMedia: false, // TODO fix this to a nullable value
+      //#preloadIframes: null. true false
+      //#autoAnimate: true
+      //#autoAnimateMatcher: null,
+      //#autoAnimateEasing: 'ease',
+      //autoAnimateDuration: 1.0,
+      //#autoAnimateUnmatched: true
+      //#autoAnimateStyles: []
+      autoSlide: 0, // TODO fix this to a falseable value
+      autoSlideStoppable: true,
+      autoSlideMethod: '0',
+      defaultTiming: 120,
+      mouseWheel: false,
+      //#previewLinks: false
+      //#postMessage: true, // TODO : this can cause issues with the vscode api ???
+      //#postMessageEvents: false,
+      //#focusBodyOnPageVisibilityChange: true,
+      transition: 'slide',
+      transitionSpeed: 'default',
+      backgroundTransition: 'fade',
+      //#pdfMaxPagesPerSlide: Number.POSITIVE_INFINITY,
+      //#pdfSeparateFragments: true,
+      //#pdfPageHeightOffset: -1,
+      viewDistance: 3,
+      //#mobileViewDistance: 2,
+      display: 'block',
+      //#hideInactiveCursor: true,
+      //#hideCursorTime: 5000
+
+      // Parallax Background
+      parallaxBackgroundImage: '',
+      parallaxBackgroundSize: '',
+      parallaxBackgroundHorizontal: 0,
+      parallaxBackgroundVertical: 0,
+
+      //Presentation Size
+      width: 960,
+			height: 700,
+			margin: 0.04,
+      minScale: 0.2,
+      maxScale: 2,
+      disableLayout: false,
+
+      audio: {
+        prefix: 'audio/', // audio files are stored in the "audio" folder
+        suffix: '.ogg', // audio files have the ".ogg" ending
+        textToSpeechURL: null, // the URL to the text to speech converter
+        defaultNotes: false, // use slide notes as default for the text to speech converter
+        defaultText: false, // use slide text as default for the text to speech converter
+        advance: 0, // advance to next slide after given time in milliseconds after audio has played, use negative value to not advance
+        autoplay: false, // automatically start slideshow
+        defaultDuration: 5, // default duration in seconds if no audio is available
+        defaultAudios: true, // try to play audios with names such as audio/1.2.ogg
+        playerOpacity: 0.05, // opacity value of audio player if unfocused
+        playerStyle: 'position: fixed; bottom: 4px; left: 25%; width: 50%; height:75px; z-index: 33;', // style used for container of audio controls
+        startAtFragment: false, // when moving to a slide, start at the current fragment or at the start of the slide
+      },
+      
+      chalkboard: { // font-awesome.min.css must be available
+        //src: "chalkboard/chalkboard.json",
+        storage: "chalkboard-demo",
+      },
+      
+			customcontrols: {
+					controls: [
+      						{
+						  id: 'toggle-overview',
+						  title: 'Toggle overview (O)',
+						  icon: '<i class="fa fa-th"></i>',
+						  action: 'Reveal.toggleOverview();'
+						}
+						,
+      {
+        icon: '<i class="fa fa-pen-square"></i>',
+        title: 'Toggle chalkboard (B)',
+        action: 'RevealChalkboard.toggleChalkboard();'
+      },
+      {
+        icon: '<i class="fa fa-pen"></i>',
+        title: 'Toggle notes canvas (C)',
+        action: 'RevealChalkboard.toggleNotesCanvas();'
+      }
+      
+				]
+			},
+			chart: {
+					defaults: { 
+						color: 'lightgray', // color of labels
+						scale: { 
+							beginAtZero: true, 
+							ticks: { stepSize: 1 },
+							grid: { color: "lightgray" } , // color of grid lines
+						},
+					},
+					line: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ], "borderDash": [ [5,10], [0,0] ] }, 
+					bar: { backgroundColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+					pie: { backgroundColor: [ ["rgba(0,0,0,.8)" , "rgba(220,20,20,.8)", "rgba(20,220,20,.8)", "rgba(220,220,20,.8)", "rgba(20,20,220,.8)"] ]},
+					radar: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+			},
+			math: {
+				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				config: 'TeX-AMS_HTML-full',
+				// pass other options into `MathJax.Hub.Config()`
+				TeX: { Macros: { RR: "{\\bf R}" } }
+				},
+				anything: [ 
+				{
+		className: "plot",
+		defaults: {width:500, height: 500, grid:true},
+		initialize: (function(container, options){ options.target = "#"+container.id; functionPlot(options) })
+	 },
+	 {
+		className: "chart",  
+		initialize: (function(container, options){ container.chart = new Chart(container.getContext("2d"), options);  })
+	 },
+	 {
+		className: "anything",
+		initialize: (function(container, options){ if (options && options.initialize) { options.initialize(container)} })
+	 },
+					],
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: (window.location.search.match(/print-pdf/gi) ? printPlugins : plugins ) 
+		});
+			
+
+
+	    // Change chalkboard theme : 
+		function changeTheme(input) {
+			var config = {};
+			config.theme = input.value;
+			Reveal.getPlugin("RevealChalkboard").configure(config);
+			input.blur();
+		}
+
+		// // Handle the message inside the webview
+        // window.addEventListener('message', event => {
+
+        //     const message = event.data; // The JSON data our extension sent
+
+        //     switch (message.command) {
+        //         case 'refactor':
+        //             Reveal.toggleHelp();
+        //     }
+        // });
+
+		if (window.location.search.match(/print-pdf-now/gi)) {
+      		setTimeout(() => {
+				window.print();
+			  }, 2500);
+			
+    }
+</script>
+
+</body>
+
+</html>
